@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        body {
+            height: 100vh;
+            width: 100vw;
+        }
+        
+        .valign-wrapper {
+            justify-content: center;
+        }
+        
+        #clock {
+            width: min(60vw, 60vh);
+            height: min(60vw, 60vh);
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        #clock .number {
+            --rotation: 0;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transform: rotate(var(--rotation));
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        #number1 {
+            --rotation: 30deg!important;
+        }
+        
+        #number2 {
+            --rotation: 60deg!important;
+        }
+        
+        #number3 {
+            --rotation: 90deg!important;
+        }
+        
+        #number4 {
+            --rotation: 120deg!important;
+        }
+        
+        #number5 {
+            --rotation: 150deg!important;
+        }
+        
+        #number6 {
+            --rotation: 180deg!important;
+        }
+        
+        #number7 {
+            --rotation: 210deg!important;
+        }
+        
+        #number8 {
+            --rotation: 240deg!important;
+        }
+        
+        #number9 {
+            --rotation: 270deg!important;
+        }
+        
+        #number10 {
+            --rotation: 300deg!important;
+        }
+        
+        #number11 {
+            --rotation: 330deg!important;
+        }
+        
+        #clock .hand {
+            --rotation: 0;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            border-radius: 9px;
+            transform-origin: bottom;
+            z-index: 10;
+            transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
+        }
+        
+        #clock::after {
+            content: '';
+            position: absolute;
+            background-color: black;
+            z-index: 100;
+            width: 3%;
+            height: 3%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        
+        #second {
+            width: 0.5%;
+            height: 45%;
+            background-color: red;
+        }
+        
+        #minute {
+            width: 1%;
+            height: 40%;
+            background-color: black;
+        }
+        
+        #hour {
+            width: 2%;
+            height: 35%;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body class="center-align valign-wrapper">
+    <div class="z-depth-3" id="clock">
+        <div class="hand" id="hour"></div>
+        <div class="hand" id="minute"></div>
+        <div class="hand" id="second"></div>
+        <div class="number" id="number1">1</div>
+        <div class="number" id="number2">2</div>
+        <div class="number" id="number3">3</div>
+        <div class="number" id="number4">4</div>
+        <div class="number" id="number5">5</div>
+        <div class="number" id="number6">6</div>
+        <div class="number" id="number7">7</div>
+        <div class="number" id="number8">8</div>
+        <div class="number" id="number9">9</div>
+        <div class="number" id="number10">10</div>
+        <div class="number" id="number11">11</div>
+        <div class="number" id="number12">12</div>
+    </div>
+
+    <script>
+        const hour_hand = document.querySelector('#hour')
+        const minute_hand = document.querySelector('#minute')
+        const second_hand = document.querySelector('#second')
+
+        let hour, minute, second, hour_ratio, minute_ratio, second_ratio;
+
+        const current_time = new Date()
+        hour = current_time.getHours()
+        minute = current_time.getMinutes()
+        second = current_time.getSeconds()
+
+        const set_rotation = (element, rotation_ratio) => element.style.setProperty('--rotation', rotation_ratio * 360)
+
+        const set_clock = () => {
+            second = (second + 1) % 60
+            if (second == 0) {
+                minute = (minute + 1) % 60
+                if (minute == 0)
+                    hour = (hour + 1) % 12
+            }
+            second_ratio = second / 60
+            minute_ratio = (minute / 60) + (second_ratio / 60)
+            hour_ratio = (hour / 12) + (minute_ratio / 12)
+            set_rotation(second_hand, second_ratio)
+            set_rotation(minute_hand, minute_ratio)
+            set_rotation(hour_hand, hour_ratio)
+        }
+
+        set_clock()
+        setInterval(set_clock, 1000)
+    </script>
+</body>
+
+</html>
