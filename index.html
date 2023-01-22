@@ -17,18 +17,18 @@
             height: 100vh;
             width: 100vw;
         }
-        
+
         .valign-wrapper {
             justify-content: center;
         }
-        
+
         #clock {
             width: min(60vw, 60vh);
             height: min(60vw, 60vh);
             border-radius: 50%;
             position: relative;
         }
-        
+
         #clock .number {
             --rotation: 0;
             position: absolute;
@@ -39,51 +39,51 @@
             font-size: 1.5rem;
             font-weight: 700;
         }
-        
+
         #number1 {
-            --rotation: 30deg!important;
+            --rotation: 30deg !important;
         }
-        
+
         #number2 {
-            --rotation: 60deg!important;
+            --rotation: 60deg !important;
         }
-        
+
         #number3 {
-            --rotation: 90deg!important;
+            --rotation: 90deg !important;
         }
-        
+
         #number4 {
-            --rotation: 120deg!important;
+            --rotation: 120deg !important;
         }
-        
+
         #number5 {
-            --rotation: 150deg!important;
+            --rotation: 150deg !important;
         }
-        
+
         #number6 {
-            --rotation: 180deg!important;
+            --rotation: 180deg !important;
         }
-        
+
         #number7 {
-            --rotation: 210deg!important;
+            --rotation: 210deg !important;
         }
-        
+
         #number8 {
-            --rotation: 240deg!important;
+            --rotation: 240deg !important;
         }
-        
+
         #number9 {
-            --rotation: 270deg!important;
+            --rotation: 270deg !important;
         }
-        
+
         #number10 {
-            --rotation: 300deg!important;
+            --rotation: 300deg !important;
         }
-        
+
         #number11 {
-            --rotation: 330deg!important;
+            --rotation: 330deg !important;
         }
-        
+
         #clock .hand {
             --rotation: 0;
             position: absolute;
@@ -94,7 +94,7 @@
             z-index: 10;
             transform: translateX(-50%) rotate(calc(var(--rotation) * 1deg));
         }
-        
+
         #clock::after {
             content: '';
             position: absolute;
@@ -107,19 +107,19 @@
             transform: translate(-50%, -50%);
             border-radius: 50%;
         }
-        
+
         #second {
             width: 0.5%;
             height: 45%;
             background-color: red;
         }
-        
+
         #minute {
             width: 1%;
             height: 40%;
             background-color: black;
         }
-        
+
         #hour {
             width: 2%;
             height: 35%;
